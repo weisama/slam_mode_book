@@ -8,9 +8,13 @@
 
 #### 2.2编辑代码
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/99e87444-cca1-4b88-9dc1-979b6fbe4883" width="70%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/99e87444-cca1-4b88-9dc1-979b6fbe4883" width="70%">
+    </td>
+  </tr>
+</table>
 
 main函数前添加变量声明、串口初始化函数，串口中断解析函数：
 
@@ -108,6 +112,7 @@ void USART1_IRQHandler(void)
     }
 }
 ```
+
 </details>
 
 main函数中添加串口初始化：
@@ -122,17 +127,27 @@ USART1_Init(115200);     // 串口初始化
 
 pose_data用于保存解析后的数据，双击左键选中后右键添加到窗口1。
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/3fc6298c-7fb4-49ea-bcc1-9845bd52b436" width="100%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/3fc6298c-7fb4-49ea-bcc1-9845bd52b436" width="100%">
+    </td>
+  </tr>
+</table>
 
 左上角按键运行代码。
 
 在窗口一右键pose_data设置10进制显示，展开pose_data可观察到解析出的数据：
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/a3225e82-50ed-4575-9a64-1177f33e0d86" width="100%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/a3225e82-50ed-4575-9a64-1177f33e0d86" width="100%">
+    </td>
+  </tr>
+</table>
+
+---
 
 ## 3.hal库例程
 
@@ -142,27 +157,47 @@ pose_data用于保存解析后的数据，双击左键选中后右键添加到�
 
 STM32CubeMX设置串口PA9和PA10用于串口通信：
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/f5a50489-21e3-47d6-9f19-13b57d369049" width="100%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/f5a50489-21e3-47d6-9f19-13b57d369049" width="100%">
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/97242ff1-e3c1-46dc-8086-b271f72bbf26" width="70%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/97242ff1-e3c1-46dc-8086-b271f72bbf26" width="70%">
+    </td>
+  </tr>
+</table>
 
 #### 3.3编辑代码
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/07c9c1ae-2908-475c-99fa-9fafab3bdfb2" width="70%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/07c9c1ae-2908-475c-99fa-9fafab3bdfb2" width="70%">
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/53830e58-853f-4c62-8513-b1591c9ea38c" width="70%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/53830e58-853f-4c62-8513-b1591c9ea38c" width="70%">
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/7c075321-0781-4a8e-82c9-13eba47ba1af" width="70%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/7c075321-0781-4a8e-82c9-13eba47ba1af" width="70%">
+    </td>
+  </tr>
+</table>
 
 main函数前添加变量声明：
 
@@ -196,13 +231,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     {
         rx_index++;
 
-        // 如果第一个字节不是帧头，丢弃重新同步
         if (rx_index == 1 && rx_buf[0] != 0xAA)
         {
             rx_index = 0;
         }
 
-        // 接收到完整帧
         if (rx_index >= 10)
         {
             rx_index = 0;
@@ -223,18 +256,22 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 #### 3.4运行代码
 
-编辑完代码，编译烧录进stm32f103c8t6，然后进入debug模式。
+编辑完代码，编译并烧录，然后进入debug模式。
 
-pose_data用于保存解析后的数据，双击左键选中后右键添加到窗口1。
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/071558f1-5ea6-446b-ab0f-7d8ce300f762" width="100%">
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/071558f1-5ea6-446b-ab0f-7d8ce300f762" width="100%" style="border: 3px solid black;">
-</div>
+在窗口一右键pose_data设置10进制显示，可以看到解析的数据：
 
-左上角按键运行代码。
-
-在窗口一右键pose_data设置10进制显示，展开pose_data可观察到解析出的数据：
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/92199ade-5832-42c6-bb23-664c6c323c9b" width="100%" style="border: 3px solid black;">
-</div>
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/92199ade-5832-42c6-bb23-664c6c323c9b" width="100%">
+    </td>
+  </tr>
+</table>
