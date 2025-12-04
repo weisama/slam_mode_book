@@ -1,0 +1,240 @@
+# 使用STM32读取slam_mode串口数据并解析
+
+## 1.例程stm32f103c8t6串口一连接模块
+
+## 2.标准库例程
+
+#### 2.1准备一个可运行的hal库点灯工程，或使用我们提供的hal库工程
+
+#### 2.2编辑代码
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/99e87444-cca1-4b88-9dc1-979b6fbe4883" width="70%" style="border: 3px solid black;">
+</div>
+
+main函数前添加变量声明、串口初始化函数，串口中断解析函数：
+
+<details>
+<summary>点击展开查看代码</summary>
+
+```c
+uint8_t rx_buf[10];
+uint8_t rx_index = 0;
+
+typedef struct
+{
+    int16_t x;
+    int16_t y;
+    int16_t z;
+    int16_t yaw;
+} PoseData_t;
+
+PoseData_t pose_data;
+
+// 串口初始化
+void USART1_Init(uint32_t baud)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    USART_InitTypeDef USART_InitStructure;
+    NVIC_InitTypeDef NVIC_InitStructure;
+
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1, ENABLE);
+
+    // TX PA9 复用推挽输出
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    // RX PA10 上拉输入
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    // USART 初始化
+    USART_InitStructure.USART_BaudRate = baud;
+    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits = USART_StopBits_1;
+    USART_InitStructure.USART_Parity = USART_Parity_No;
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+    USART_Init(USART1, &USART_InitStructure);
+
+    // 使能接收中断
+    USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+
+    // NVIC 配置
+    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    // 使能串口
+    USART_Cmd(USART1, ENABLE);
+}
+
+
+//串口中断接收并解析
+void USART1_IRQHandler(void)
+{
+    if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+    {
+        rx_buf[rx_index] = USART_ReceiveData(USART1);
+        rx_index++;
+
+        // 若第一个字节不是帧头，丢弃重新同步
+        if (rx_index == 1 && rx_buf[0] != 0xAA)
+        {
+            rx_index = 0;
+        }
+
+        // 收到完整包（10 字节）
+        if (rx_index >= 10)
+        {
+            rx_index = 0;
+
+            if (rx_buf[0] == 0xAA && rx_buf[9] == 0x0A)
+            {
+                pose_data.x   = (int16_t)((rx_buf[1] << 8) | rx_buf[2]);
+                pose_data.y   = (int16_t)((rx_buf[3] << 8) | rx_buf[4]);
+                pose_data.z   = (int16_t)((rx_buf[5] << 8) | rx_buf[6]);
+                pose_data.yaw = (int16_t)((rx_buf[7] << 8) | rx_buf[8]);
+            }
+        }
+
+        // 清中断标志
+        USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+    }
+}
+```
+</details>
+
+main函数中添加串口初始化：
+
+```
+USART1_Init(115200);     // 串口初始化
+```
+
+#### 2.3运行代码
+
+编辑完代码，编译烧录进stm32f103c8t6，然后进入debug模式。
+
+pose_data用于保存解析后的数据，双击左键选中后右键添加到窗口1。
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/3fc6298c-7fb4-49ea-bcc1-9845bd52b436" width="100%" style="border: 3px solid black;">
+</div>
+
+左上角按键运行代码。
+
+在窗口一右键pose_data设置10进制显示，展开pose_data可观察到解析出的数据：
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a3225e82-50ed-4575-9a64-1177f33e0d86" width="100%" style="border: 3px solid black;">
+</div>
+
+## 3.hal库例程
+
+#### 3.1准备一个可运行的标准库点灯工程，或使用我们提供的标准库工程
+
+#### 3.2编辑工程
+
+STM32CubeMX设置串口PA9和PA10用于串口通信：
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/f5a50489-21e3-47d6-9f19-13b57d369049" width="100%" style="border: 3px solid black;">
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/97242ff1-e3c1-46dc-8086-b271f72bbf26" width="70%" style="border: 3px solid black;">
+</div>
+
+#### 3.3编辑代码
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/07c9c1ae-2908-475c-99fa-9fafab3bdfb2" width="70%" style="border: 3px solid black;">
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/53830e58-853f-4c62-8513-b1591c9ea38c" width="70%" style="border: 3px solid black;">
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7c075321-0781-4a8e-82c9-13eba47ba1af" width="70%" style="border: 3px solid black;">
+</div>
+
+main函数前添加变量声明：
+
+```
+uint8_t rx_buf[10];
+uint8_t rx_index = 0;
+
+typedef struct
+{
+    int16_t x;
+    int16_t y;
+    int16_t z;
+    int16_t yaw;
+} PoseData_t;
+
+PoseData_t pose_data;
+```
+
+main函数中添加串口初始化：
+
+```
+HAL_UART_Receive_IT(&huart1, &rx_buf[rx_index], 1);
+```
+
+main函数后添加串口中断解析函数：
+
+```
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1)
+    {
+        rx_index++;
+
+        // 如果第一个字节不是帧头，丢弃重新同步
+        if (rx_index == 1 && rx_buf[0] != 0xAA)
+        {
+            rx_index = 0;
+        }
+
+        // 接收到完整帧
+        if (rx_index >= 10)
+        {
+            rx_index = 0;
+
+            if (rx_buf[0] == 0xAA && rx_buf[9] == 0x0A)
+            {
+                pose_data.x   = (int16_t)( (rx_buf[1] << 8) | rx_buf[2] );
+                pose_data.y   = (int16_t)( (rx_buf[3] << 8) | rx_buf[4] );
+                pose_data.z   = (int16_t)( (rx_buf[5] << 8) | rx_buf[6] );
+                pose_data.yaw = (int16_t)( (rx_buf[7] << 8) | rx_buf[8] );
+            }
+        }
+
+        HAL_UART_Receive_IT(&huart1, &rx_buf[rx_index], 1);
+    }
+}
+```
+
+#### 3.4运行代码
+
+编辑完代码，编译烧录进stm32f103c8t6，然后进入debug模式。
+
+pose_data用于保存解析后的数据，双击左键选中后右键添加到窗口1。
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/071558f1-5ea6-446b-ab0f-7d8ce300f762" width="100%" style="border: 3px solid black;">
+</div>
+
+左上角按键运行代码。
+
+在窗口一右键pose_data设置10进制显示，展开pose_data可观察到解析出的数据：
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/92199ade-5832-42c6-bb23-664c6c323c9b" width="100%" style="border: 3px solid black;">
+</div>
