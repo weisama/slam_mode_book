@@ -26,7 +26,7 @@
 <table>
   <tr>
     <td style="border: 10px solid black; padding: 0;">
-      <img src="https://github.com/user-attachments/assets/4cf9a1a9-7ae1-46fe-b6fb-1a35e55268da" width="100%">
+      <img src="https://github.com/user-attachments/assets/69ee399e-3274-4b62-8597-2a47c54beefb" width="100%">
     </td>
   </tr>
 </table>
