@@ -1,8 +1,8 @@
 # 教程跳转
 
-## [2d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d)
+## [🔗2d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d)
 
-## [3d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d)
+## [🔗3d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d)
 
 # 淘宝链接
 
