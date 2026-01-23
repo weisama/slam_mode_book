@@ -34,7 +34,15 @@
 <table>
   <tr>
     <td style="border: 10px solid black; padding: 0;">
-      <img src="https://github.com/user-attachments/assets/071ac31a-4ecf-4b60-abf6-0245bd86c15d" width="50%">
+      <img src="https://github.com/user-attachments/assets/e53eaccc-525b-454f-88a0-5b5838b3e866" width="60%">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/071ac31a-4ecf-4b60-abf6-0245bd86c15d" width="60%">
     </td>
   </tr>
 </table>
