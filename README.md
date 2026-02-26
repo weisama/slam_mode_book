@@ -2,9 +2,9 @@
 
 **添加客服微信13076541053，加入交流群**
 
-## [🔗2d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d)
+## [点击跳转🔗2d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d)
 
-## [🔗3d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d)
+## [点击跳转🔗3d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d)
 
 # 1.淘宝链接
 
