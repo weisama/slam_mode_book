@@ -1,12 +1,6 @@
-# 0.教程跳转
-
 **添加客服微信13076541053，加入交流群**
 
-## [点击跳转🔗2d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d)
-
-## [点击跳转🔗3d定位模块使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d)
-
-# 1.淘宝链接
+# 0.淘宝链接
 
 ## **↓↓↓↓↓↓↓↓商品链接↓↓↓↓↓↓↓↓**
 
@@ -21,28 +15,27 @@
 
 ## **↑↑↑↑↑↑↑↑商品链接↑↑↑↑↑↑↑↑**
 
-## 2.基本信息
+# 1.教程跳转连接
 
-<table>
-  <tr>
-    <td style="border: 10px solid black; padding: 0;">
-      <img src="https://github.com/user-attachments/assets/69ee399e-3274-4b62-8597-2a47c54beefb" width="100%">
-    </td>
-  </tr>
-</table>
+## [点击跳转🔗2d定位模块V1.0使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d_v1.0)
 
-<table>
-  <tr>
-    <td style="border: 10px solid black; padding: 0;">
-      <img src="https://github.com/user-attachments/assets/e53eaccc-525b-454f-88a0-5b5838b3e866" width="60%">
-    </td>
-  </tr>
-</table>
 
 <table>
   <tr>
     <td style="border: 10px solid black; padding: 0;">
       <img src="https://github.com/user-attachments/assets/071ac31a-4ecf-4b60-abf6-0245bd86c15d" width="60%">
+    </td>
+  </tr>
+</table>
+
+---
+
+## [点击跳转🔗3d定位模块V1.0使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d_v1.0)
+
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/69ee399e-3274-4b62-8597-2a47c54beefb" width="100%">
     </td>
   </tr>
 </table>
