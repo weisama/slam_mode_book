@@ -21,6 +21,16 @@
 
 ## [点击跳转🔗3d定位模块V1.1使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_3d_v1.1)
 
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/5eef7dd2-8da7-4dd4-bb14-bf8f47c9dbb4" width="60%">
+    </td>
+  </tr>
+</table>
+
+---
+
 ## [点击跳转🔗2d定位模块V1.0使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d_v1.0)
 
 
