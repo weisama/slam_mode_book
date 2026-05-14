@@ -17,6 +17,29 @@
 
 # 1.教程跳转链接
 
+## [点击跳转🔗2d/3d定位/导航模块V1.1使用教程](https://github.com/weisama/slam_mode_book/tree/mode_v2.0)
+
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/6d593591-ae59-4e3e-9174-beca91961b78" width="60%">
+    </td>
+  </tr>
+</table>
+
+## 规格参数
+
+<table>
+  <tr>
+    <td style="border: 10px solid black; padding: 0;">
+      <img src="https://github.com/user-attachments/assets/d915c91a-a1c3-4965-90a8-bd80dd127deb" width="100%">
+    </td>
+  </tr>
+
+---
+
+# 2.旧版教程跳转链接
+
 ## [点击跳转🔗2d/3d定位/导航模块V1.1使用教程](https://github.com/weisama/slam_mode_book/tree/mode_v1.1)
 
 <table>
@@ -52,10 +75,6 @@
     </td>
   </tr>
 </table>
-
----
-
-# 2.旧版教程跳转链接
 
 ## [点击跳转🔗2d定位模块V1.0使用教程](https://github.com/weisama/slam_mode_book/tree/slam_mode_2d_v1.0)
 
