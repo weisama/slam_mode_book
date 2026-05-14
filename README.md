@@ -17,7 +17,7 @@
 
 # 1.教程跳转链接
 
-## [点击跳转🔗2d/3d定位/导航模块V1.1使用教程](https://github.com/weisama/slam_mode_book/tree/mode_v2.0)
+## [点击跳转🔗2d/3d定位/导航模块V2.0使用教程](https://github.com/weisama/slam_mode_book/tree/mode_v2.0)
 
 <table>
   <tr>
