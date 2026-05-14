@@ -35,6 +35,7 @@
       <img src="https://github.com/user-attachments/assets/d915c91a-a1c3-4965-90a8-bd80dd127deb" width="100%">
     </td>
   </tr>
+</table>
 
 ---
 
